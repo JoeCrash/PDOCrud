@@ -14,9 +14,9 @@
 		 */
 		protected static $connections = array();
 
-		private $db_dsn = ''; //Change as required
-		private $db_user = ''; // Change as required
-		private $db_pass = ''; //Change as required
+		private $dbDsn = ''; //Change as required
+		private $dbUser = ''; // Change as required
+		private $dbPass = ''; //Change as required
 		private $options = []; //Change as required
 
 		/**
@@ -33,13 +33,13 @@
 
 		public function __construct($dsn = NULL, $username = NULL, $password = NULL, $options = [])
 		{
-			$this->db_dsn = $dsn;
-			$this->db_user = $username;
-			$this->db_pass = $password;
+			$this->dbDsn = $dsn;
+			$this->dbUser = $username;
+			$this->dbPass = $password;
 
-			if($dsn == NULL){ $this->db_dsn = DB_DSN;}
-			if($username == NULL){ $this->db_user = DB_USER;}
-			if($password == NULL){ $this->db_pass = DB_PASS;}
+			if($dsn == NULL){ $this->dbDsn = DB_DSN;}
+			if($username == NULL){ $this->dbUser = DB_USER;}
+			if($password == NULL){ $this->dbPass = DB_PASS;}
 
 			$default_options = [
 				PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, //key val arrays by default
@@ -69,7 +69,7 @@
 		{
 			if (!$this->con) {
 				try {
-					$this->db = new PDO($this->db_dsn, $this->db_user, $this->db_pass, $this->options);
+					$this->db = new PDO($this->dbDsn, $this->dbUser, $this->dbPass, $this->options);
 				} catch (Exception $e) {
 					$this->result = $e->getMessage();
 					return false; // Problem selecting database return FALSE
